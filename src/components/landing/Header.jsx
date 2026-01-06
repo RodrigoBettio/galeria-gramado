@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu, X } from "lucide-react";
+import { useCart } from "@/components/cart/CartContext";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
 
 export default function Header({ scrolled }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const cartCount = 0;
+  const { cartCount, openCart } = useCart();
 
   const navLinks = [
     { name: "Início", href: "#inicio" },
     { name: "Sobre", href: "#sobre" },
-    { name: "Galeria", href: "#projetos" },
+    { name: "Galeria", href: "/gallery", isRoute: true },
     { name: "Contato", href: "#contato" },
   ];
 
@@ -47,31 +50,51 @@ export default function Header({ scrolled }) {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-10">
               {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative text-white/90 hover:text-[#C5A059] transition-colors duration-300 text-sm tracking-wide font-montserrat font-medium group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C5A059] transition-all duration-300 group-hover:w-full" />
-                </motion.a>
+                link.isRoute ? (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={createPageUrl("Gallery")}
+                      className="relative text-white/90 hover:text-[#C5A059] transition-colors duration-300 text-sm tracking-wide font-montserrat font-medium group"
+                    >
+                      {link.name}
+                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C5A059] transition-all duration-300 group-hover:w-full" />
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative text-white/90 hover:text-[#C5A059] transition-colors duration-300 text-sm tracking-wide font-montserrat font-medium group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C5A059] transition-all duration-300 group-hover:w-full" />
+                  </motion.a>
+                )
               ))}
             </nav>
 
             {/* Cart & Mobile Menu */}
             <div className="flex items-center gap-4">
               <motion.button
+                onClick={openCart}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative p-2 text-white hover:text-[#C5A059] transition-colors"
               >
                 <ShoppingBag className="w-5 h-5 lg:w-6 lg:h-6" strokeWidth={1.5} />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C5A059] text-[#2D2D2D] text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C5A059] text-[#2D2D2D] text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </motion.button>
 
               <button
@@ -114,14 +137,25 @@ export default function Header({ scrolled }) {
                 </div>
                 <nav className="flex flex-col gap-6">
                   {navLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-white/90 hover:text-[#C5A059] transition-colors text-lg font-playfair tracking-wide"
-                    >
-                      {link.name}
-                    </a>
+                    link.isRoute ? (
+                      <Link
+                        key={link.name}
+                        to={createPageUrl("Gallery")}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-white/90 hover:text-[#C5A059] transition-colors text-lg font-playfair tracking-wide"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-white/90 hover:text-[#C5A059] transition-colors text-lg font-playfair tracking-wide"
+                      >
+                        {link.name}
+                      </a>
+                    )
                   ))}
                 </nav>
               </div>
