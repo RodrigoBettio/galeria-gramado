@@ -12,7 +12,7 @@ export default function Header({ scrolled }) {
   const navLinks = [
     { name: "Início", href: "#inicio" },
     { name: "Sobre", href: "#sobre" },
-    { name: "Galeria", href: "/gallery", isRoute: true },
+    { name: "Obras", href: "/gallery", isRoute: true },
     { name: "Contato", href: "#contato" },
   ];
 
