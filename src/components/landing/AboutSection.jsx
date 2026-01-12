@@ -21,19 +21,19 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative max-w-sm mx-auto lg:mx-0"
           >
             <div className="relative">
               {/* Frame Decoration */}
-              <div className="absolute -inset-4 lg:-inset-6 border-2 border-[#C5A059]/30 rounded-lg" />
-              <div className="absolute -inset-8 lg:-inset-10 border border-[#4B3619]/10 rounded-lg" />
+              <div className="absolute -inset-3 lg:-inset-4 border-2 border-[#C5A059]/30 rounded-lg" />
+              <div className="absolute -inset-5 lg:-inset-6 border border-[#4B3619]/10 rounded-lg" />
               
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-lg shadow-2xl">
                 <img
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695d83a2796b79f316117048/c045affeb_image.png"
                   alt="Giovanni Bocchi"
-                  className="w-full aspect-[4/5] object-cover"
+                  className="w-full aspect-[3/4] object-cover"
                   style={{ filter: "grayscale(100%) contrast(1.1)" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#4B3619]/40 to-transparent" />
@@ -45,9 +45,9 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-[#4B3619] p-3 lg:p-5 rounded-lg shadow-xl"
+                className="absolute -bottom-3 -right-3 lg:-bottom-5 lg:-right-5 bg-[#4B3619] p-3 lg:p-4 rounded-lg shadow-xl"
               >
-                <Award className="w-6 h-6 lg:w-8 lg:h-8 text-[#C5A059] mb-1" />
+                <Award className="w-5 h-5 lg:w-7 lg:h-7 text-[#C5A059] mb-1" />
                 <p className="font-playfair text-white text-xs lg:text-sm font-semibold">4x Louvre</p>
                 <p className="text-[#C5A059] text-[10px] lg:text-xs">Paris, França</p>
               </motion.div>
