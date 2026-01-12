@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button";
 
 export default function ProductModal({ product, onClose }) {
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || "60x40cm");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const { addToCart, openCart } = useCart();
+
+  const imageUrls = product.image_urls || (product.image_url ? [product.image_url] : []);
 
   const handleAddToCart = () => {
     const success = addToCart(product, selectedSize);
@@ -48,28 +51,54 @@ export default function ProductModal({ product, onClose }) {
 
           <div className="grid md:grid-cols-2 gap-8 p-8 max-h-[90vh] overflow-y-auto">
             {/* Image Section */}
-            <div className="relative">
-              {/* Ornate Frame */}
-              <div className="relative bg-gradient-to-br from-[#C5A059] via-[#D4AF6A] to-[#C5A059] p-2 rounded-lg shadow-2xl">
-                <div className="relative bg-gradient-to-br from-[#B89952] to-[#C5A059] p-3 rounded-lg">
-                  <div className="relative bg-[#F5F0E8] p-4 rounded-sm">
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
-                      <img
-                        src={product.image_url}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                        style={{ filter: "sepia(15%) contrast(1.05)" }}
-                      />
+            <div className="space-y-4">
+              <div className="relative">
+                {/* Ornate Frame */}
+                <div className="relative bg-gradient-to-br from-[#C5A059] via-[#D4AF6A] to-[#C5A059] p-2 rounded-lg shadow-2xl">
+                  <div className="relative bg-gradient-to-br from-[#B89952] to-[#C5A059] p-3 rounded-lg">
+                    <div className="relative bg-[#F5F0E8] p-4 rounded-sm">
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+                        <img
+                          src={imageUrls[selectedImageIndex]}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                          style={{ filter: "sepia(15%) contrast(1.05)" }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Decorative Corners */}
+                <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-[#C5A059] rounded-tl-xl" />
+                <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-[#C5A059] rounded-tr-xl" />
+                <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-[#C5A059] rounded-bl-xl" />
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-[#C5A059] rounded-br-xl" />
               </div>
 
-              {/* Decorative Corners */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-[#C5A059] rounded-tl-xl" />
-              <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-[#C5A059] rounded-tr-xl" />
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-[#C5A059] rounded-bl-xl" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-[#C5A059] rounded-br-xl" />
+              {/* Image Thumbnails */}
+              {imageUrls.length > 1 && (
+                <div className="flex gap-2 justify-center flex-wrap">
+                  {imageUrls.map((url, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImageIndex(index)}
+                      className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                        selectedImageIndex === index
+                          ? "border-[#C5A059] scale-110"
+                          : "border-[#4B3619]/20 hover:border-[#C5A059]/50"
+                      }`}
+                    >
+                      <img
+                        src={url}
+                        alt={`${product.name} ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        style={{ filter: "sepia(15%)" }}
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Details Section */}
@@ -87,6 +116,15 @@ export default function ProductModal({ product, onClose }) {
                 <h2 className="font-playfair text-[#2D2D2D] text-3xl lg:text-4xl font-bold mb-4">
                   {product.name}
                 </h2>
+
+                {/* Price */}
+                {product.price && (
+                  <div className="mb-4">
+                    <span className="font-playfair text-[#C5A059] text-3xl font-bold">
+                      R$ {product.price.toFixed(2)}
+                    </span>
+                  </div>
+                )}
 
                 {/* Description */}
                 {product.description && (
@@ -146,9 +184,11 @@ export default function ProductModal({ product, onClose }) {
                     </>
                   )}
                 </Button>
-                <p className="font-montserrat text-[#2D2D2D]/50 text-xs text-center mt-3">
-                  * Os preços serão informados via WhatsApp
-                </p>
+                {!product.price && (
+                  <p className="font-montserrat text-[#2D2D2D]/50 text-xs text-center mt-3">
+                    * Os preços serão informados via WhatsApp
+                  </p>
+                )}
               </div>
             </div>
           </div>

@@ -20,7 +20,8 @@ export default function ProductFormModal({ product, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
     name: product?.name || "",
     category: product?.category || "Arquitetura",
-    image_url: product?.image_url || "",
+    image_urls: product?.image_urls || [],
+    price: product?.price || "",
     sizes: product?.sizes || ["60x40cm", "100x80cm"],
     description: product?.description || "",
     is_featured: product?.is_featured || false,
@@ -49,12 +50,19 @@ export default function ProductFormModal({ product, onClose, onSuccess }) {
     try {
       setUploading(true);
       const result = await base44.integrations.Core.UploadFile({ file });
-      setFormData({ ...formData, image_url: result.file_url });
+      setFormData({ ...formData, image_urls: [...formData.image_urls, result.file_url] });
     } catch (error) {
       console.error("Upload error:", error);
     } finally {
       setUploading(false);
     }
+  };
+
+  const handleRemoveImage = (index) => {
+    setFormData({
+      ...formData,
+      image_urls: formData.image_urls.filter((_, i) => i !== index),
+    });
   };
 
   const handleAddSize = () => {
@@ -113,35 +121,44 @@ export default function ProductFormModal({ product, onClose, onSuccess }) {
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             {/* Image Upload */}
             <div className="space-y-2">
-              <Label className="font-montserrat text-[#2D2D2D]">Imagem da Obra *</Label>
-              <div className="flex gap-4">
-                {formData.image_url && (
-                  <div className="relative w-32 h-32 rounded-lg overflow-hidden border-4 border-[#C5A059] flex-shrink-0">
-                    <img
-                      src={formData.image_url}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                      style={{ filter: "sepia(15%)" }}
-                    />
+              <Label className="font-montserrat text-[#2D2D2D]">Imagens da Obra *</Label>
+              <div className="space-y-3">
+                {formData.image_urls.length > 0 && (
+                  <div className="flex flex-wrap gap-3">
+                    {formData.image_urls.map((url, index) => (
+                      <div key={index} className="relative w-24 h-24 rounded-lg overflow-hidden border-4 border-[#C5A059] flex-shrink-0">
+                        <img
+                          src={url}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          style={{ filter: "sepia(15%)" }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          className="absolute top-1 right-1 p-1 bg-red-600 hover:bg-red-700 text-white rounded-full transition-colors"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 )}
-                <div className="flex-1">
-                  <label className="cursor-pointer">
-                    <div className="border-2 border-dashed border-[#4B3619]/30 rounded-lg p-6 hover:border-[#C5A059] transition-colors text-center">
-                      <Upload className="w-8 h-8 text-[#4B3619]/40 mx-auto mb-2" />
-                      <p className="font-montserrat text-sm text-[#2D2D2D]/60">
-                        {uploading ? "Enviando..." : "Clique para fazer upload"}
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                      disabled={uploading}
-                    />
-                  </label>
-                </div>
+                <label className="cursor-pointer block">
+                  <div className="border-2 border-dashed border-[#4B3619]/30 rounded-lg p-6 hover:border-[#C5A059] transition-colors text-center">
+                    <Upload className="w-8 h-8 text-[#4B3619]/40 mx-auto mb-2" />
+                    <p className="font-montserrat text-sm text-[#2D2D2D]/60">
+                      {uploading ? "Enviando..." : "Clique para adicionar imagem"}
+                    </p>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                    disabled={uploading}
+                  />
+                </label>
               </div>
             </div>
 
@@ -156,6 +173,22 @@ export default function ProductFormModal({ product, onClose, onSuccess }) {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Ex: Galeão Santa Maria"
                 required
+                className="bg-white border-[#4B3619]/20 font-montserrat"
+              />
+            </div>
+
+            {/* Price */}
+            <div className="space-y-2">
+              <Label htmlFor="price" className="font-montserrat text-[#2D2D2D]">
+                Preço (R$)
+              </Label>
+              <Input
+                id="price"
+                type="number"
+                step="0.01"
+                value={formData.price}
+                onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || "" })}
+                placeholder="Ex: 1500.00"
                 className="bg-white border-[#4B3619]/20 font-montserrat"
               />
             </div>
@@ -264,7 +297,7 @@ export default function ProductFormModal({ product, onClose, onSuccess }) {
               </Button>
               <Button
                 type="submit"
-                disabled={saveMutation.isPending || !formData.name || !formData.image_url}
+                disabled={saveMutation.isPending || !formData.name || formData.image_urls.length === 0}
                 className="flex-1 bg-[#C5A059] hover:bg-[#B89952] text-white font-montserrat"
               >
                 {saveMutation.isPending ? (

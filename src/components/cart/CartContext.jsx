@@ -29,8 +29,9 @@ export function CartProvider({ children }) {
       productId: product.id,
       name: product.name,
       size: selectedSize,
-      image_url: product.image_url,
+      image_url: product.image_urls?.[0] || product.image_url,
       category: product.category,
+      price: product.price,
     };
 
     // Check if item already exists

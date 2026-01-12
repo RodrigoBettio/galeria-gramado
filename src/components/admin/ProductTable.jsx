@@ -52,6 +52,7 @@ export default function ProductTable({ products, isLoading, onEdit, onSuccess })
               <TableHead className="text-white font-montserrat">Imagem</TableHead>
               <TableHead className="text-white font-montserrat">Nome</TableHead>
               <TableHead className="text-white font-montserrat">Categoria</TableHead>
+              <TableHead className="text-white font-montserrat">Preço</TableHead>
               <TableHead className="text-white font-montserrat">Tamanhos</TableHead>
               <TableHead className="text-white font-montserrat text-center">Destaque</TableHead>
               <TableHead className="text-white font-montserrat text-right">Ações</TableHead>
@@ -63,14 +64,14 @@ export default function ProductTable({ products, isLoading, onEdit, onSuccess })
                 .fill(0)
                 .map((_, i) => (
                   <TableRow key={i}>
-                    <TableCell colSpan={6}>
+                    <TableCell colSpan={7}>
                       <div className="animate-pulse h-16 bg-gray-200 rounded" />
                     </TableCell>
                   </TableRow>
                 ))
             ) : products.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-12">
+                <TableCell colSpan={7} className="text-center py-12">
                   <p className="font-montserrat text-[#2D2D2D]/60">
                     Nenhuma obra cadastrada ainda.
                   </p>
@@ -82,11 +83,16 @@ export default function ProductTable({ products, isLoading, onEdit, onSuccess })
                   <TableCell>
                     <div className="relative w-16 h-16 rounded-lg overflow-hidden border-2 border-[#C5A059]">
                       <img
-                        src={product.image_url}
+                        src={product.image_urls?.[0] || product.image_url}
                         alt={product.name}
                         className="w-full h-full object-cover"
                         style={{ filter: "sepia(15%)" }}
                       />
+                      {product.image_urls?.length > 1 && (
+                        <div className="absolute bottom-0 right-0 bg-[#4B3619] text-white text-[10px] px-1 rounded-tl font-montserrat">
+                          +{product.image_urls.length - 1}
+                        </div>
+                      )}
                     </div>
                   </TableCell>
                   <TableCell>
@@ -105,6 +111,15 @@ export default function ProductTable({ products, isLoading, onEdit, onSuccess })
                     <Badge className={`${categoryColors[product.category]} font-montserrat`}>
                       {product.category}
                     </Badge>
+                  </TableCell>
+                  <TableCell>
+                    {product.price ? (
+                      <span className="font-montserrat font-semibold text-[#2D2D2D]">
+                        R$ {product.price.toFixed(2)}
+                      </span>
+                    ) : (
+                      <span className="text-[#2D2D2D]/30 text-xs font-montserrat">-</span>
+                    )}
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">

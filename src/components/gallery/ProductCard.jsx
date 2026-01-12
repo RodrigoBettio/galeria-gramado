@@ -19,7 +19,7 @@ export default function ProductCard({ product, index, onViewDetails }) {
             {/* Image Container */}
             <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#4B3619]/5">
               <img
-                src={product.image_url}
+                src={product.image_urls?.[0] || product.image_url}
                 alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 style={{ filter: "sepia(15%) contrast(1.05)" }}
@@ -56,6 +56,11 @@ export default function ProductCard({ product, index, onViewDetails }) {
         <p className="font-montserrat text-[#C5A059] text-sm uppercase tracking-wide">
           {product.category}
         </p>
+        {product.price && (
+          <p className="font-montserrat text-[#4B3619] text-base font-bold mt-2">
+            R$ {product.price.toFixed(2)}
+          </p>
+        )}
       </div>
 
       {/* Shadow Effect */}
