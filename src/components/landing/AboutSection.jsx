@@ -14,7 +14,7 @@ export default function AboutSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-20 items-center">
           {/* Artist Photo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
