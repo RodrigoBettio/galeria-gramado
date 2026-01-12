@@ -104,10 +104,17 @@ export default function ProductModal({ product, onClose }) {
             {/* Details Section */}
             <div className="flex flex-col justify-between">
               <div>
+                {/* Gravura Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C5A059]/30 rounded-lg mb-3 border border-[#C5A059]/50">
+                  <span className="font-montserrat text-[#4B3619] text-xs uppercase tracking-wider font-bold">
+                    Gravura em Bico de Pena
+                  </span>
+                </div>
+
                 {/* Category Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#C5A059]/20 rounded-full mb-4">
-                  <span className="w-2 h-2 bg-[#C5A059] rounded-full" />
-                  <span className="font-montserrat text-[#4B3619] text-xs uppercase tracking-wider font-semibold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#4B3619]/10 rounded-full mb-4 ml-2">
+                  <span className="w-2 h-2 bg-[#4B3619] rounded-full" />
+                  <span className="font-montserrat text-[#4B3619]/70 text-xs uppercase tracking-wider font-semibold">
                     {product.category}
                   </span>
                 </div>

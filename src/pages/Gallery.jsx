@@ -92,8 +92,11 @@ export default function Gallery() {
             <h1 className="font-playfair text-white text-4xl lg:text-6xl font-bold mb-4">
               Nossa Galeria
             </h1>
-            <p className="font-montserrat text-[#C5A059] text-base lg:text-lg tracking-wide">
-              Explore obras únicas em bico de pena
+            <p className="font-montserrat text-[#C5A059] text-base lg:text-lg tracking-wide mb-2">
+              Gravuras em Bico de Pena
+            </p>
+            <p className="font-montserrat text-white/80 text-sm lg:text-base">
+              Explore obras únicas e autênticas
             </p>
           </motion.div>
         </div>

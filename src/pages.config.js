@@ -1,12 +1,12 @@
-import Gallery from './pages/Gallery';
 import Admin from './pages/Admin';
+import Gallery from './pages/Gallery';
 import Home from './pages/Home';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Gallery": Gallery,
     "Admin": Admin,
+    "Gallery": Gallery,
     "Home": Home,
 }
 

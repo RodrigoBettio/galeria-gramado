@@ -38,9 +38,12 @@ export default function FeaturedWorks() {
             <span className="font-montserrat text-[#C5A059] text-sm tracking-[0.2em] uppercase">Seleção Especial</span>
             <div className="w-16 h-[1px] bg-[#C5A059]" />
           </div>
-          <h2 className="font-playfair text-[#4B3619] text-4xl lg:text-6xl font-bold">
+          <h2 className="font-playfair text-[#4B3619] text-4xl lg:text-6xl font-bold mb-3">
             Obras em Destaque
           </h2>
+          <p className="font-montserrat text-[#C5A059] text-base lg:text-lg tracking-wide">
+            Gravuras em Bico de Pena
+          </p>
         </motion.div>
 
         {/* Featured Products Grid */}
