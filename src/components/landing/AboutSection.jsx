@@ -14,7 +14,7 @@ export default function AboutSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Artist Photo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -31,7 +31,7 @@ export default function AboutSection() {
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-lg shadow-2xl">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695d83a2796b79f316117048/c045affeb_image.png"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
                   alt="Giovanni Bocchi"
                   className="w-full aspect-[4/5] object-cover"
                   style={{ filter: "grayscale(100%) contrast(1.1)" }}

@@ -8,12 +8,12 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695d83a2796b79f316117048/ce05bac96_image.png"
-          alt="Obra de Giovanni Bocchi"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80"
+          alt="European Architecture"
           className="w-full h-full object-cover"
-          style={{ filter: "sepia(20%) brightness(0.7) contrast(1.1)" }}
+          style={{ filter: "sepia(60%) brightness(0.7) contrast(1.1)" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#4B3619]/60 via-[#4B3619]/50 to-[#4B3619]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4B3619]/40 via-[#4B3619]/30 to-[#4B3619]/80" />
       </div>
 
       {/* Decorative Frame */}
