@@ -45,11 +45,11 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 bg-[#4B3619] p-4 lg:p-6 rounded-lg shadow-xl"
+                className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-[#4B3619] p-3 lg:p-5 rounded-lg shadow-xl"
               >
-                <Award className="w-8 h-8 lg:w-10 lg:h-10 text-[#C5A059] mb-2" />
-                <p className="font-playfair text-white text-sm lg:text-base font-semibold">4x Louvre</p>
-                <p className="text-[#C5A059] text-xs">Paris, França</p>
+                <Award className="w-6 h-6 lg:w-8 lg:h-8 text-[#C5A059] mb-1" />
+                <p className="font-playfair text-white text-xs lg:text-sm font-semibold">4x Louvre</p>
+                <p className="text-[#C5A059] text-[10px] lg:text-xs">Paris, França</p>
               </motion.div>
             </div>
           </motion.div>
