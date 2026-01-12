@@ -112,6 +112,11 @@ export default function CartDrawer() {
                         <div className="inline-flex items-center gap-1 px-2 py-1 bg-[#4B3619]/10 rounded text-[#4B3619] text-xs font-montserrat font-medium">
                           {item.size}
                         </div>
+                        {item.price && (
+                          <p className="font-montserrat text-[#4B3619] text-sm font-bold mt-1">
+                            R$ {item.price.toFixed(2)}
+                          </p>
+                        )}
                       </div>
 
                       {/* Remove Button */}
