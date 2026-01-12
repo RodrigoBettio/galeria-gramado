@@ -31,7 +31,7 @@ export default function AboutSection() {
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-lg shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695d83a2796b79f316117048/c045affeb_image.png"
                   alt="Giovanni Bocchi"
                   className="w-full aspect-[4/5] object-cover"
                   style={{ filter: "grayscale(100%) contrast(1.1)" }}

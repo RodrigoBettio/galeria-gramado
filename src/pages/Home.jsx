@@ -4,7 +4,7 @@ import Header from "@/components/landing/Header";
 import HeroSection from "@/components/landing/HeroSection";
 import AboutSection from "@/components/landing/AboutSection";
 import StatsSection from "@/components/landing/StatsSection";
-import ProjectsSection from "@/components/landing/ProjectsSection";
+import FeaturedWorksSection from "@/components/landing/FeaturedWorksSection";
 import ContactSection from "@/components/landing/ContactSection";
 import Footer from "@/components/landing/Footer";
 
@@ -40,7 +40,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <StatsSection />
-      <ProjectsSection />
+      <FeaturedWorksSection />
       <ContactSection />
       <Footer />
     </div>
