@@ -51,8 +51,8 @@ export default function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="font-playfair text-white text-5xl sm:text-6xl lg:text-8xl font-bold mb-6 leading-tight"
           >
-            Galeria
-            <span className="block text-[#C5A059]">Gramado</span>
+            Gramado
+            <span className="block text-[#C5A059]">Galeria</span>
           </motion.h1>
 
           {/* Subtitle */}
