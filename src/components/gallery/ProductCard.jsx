@@ -17,12 +17,12 @@ export default function ProductCard({ product, index, onViewDetails }) {
           {/* White Mat */}
           <div className="relative bg-[#F5F0E8] p-3 rounded-sm">
             {/* Image Container */}
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#4B3619]/5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#4B3619]/5">
               <img
                 src={product.image_urls?.[0] || product.image_url}
                 alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                style={{ filter: "sepia(15%) contrast(1.05)" }}
+                style={{ filter: "sepia(15%) contrast(1.05)", objectPosition: "center" }}
               />
               
               {/* Overlay on Hover */}

@@ -57,12 +57,12 @@ export default function ProductModal({ product, onClose }) {
                 <div className="relative bg-gradient-to-br from-[#C5A059] via-[#D4AF6A] to-[#C5A059] p-2 rounded-lg shadow-2xl">
                   <div className="relative bg-gradient-to-br from-[#B89952] to-[#C5A059] p-3 rounded-lg">
                     <div className="relative bg-[#F5F0E8] p-4 rounded-sm">
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
                         <img
                           src={imageUrls[selectedImageIndex]}
                           alt={product.name}
                           className="w-full h-full object-cover"
-                          style={{ filter: "sepia(15%) contrast(1.05)" }}
+                          style={{ filter: "sepia(15%) contrast(1.05)", objectPosition: "center" }}
                         />
                       </div>
                     </div>
