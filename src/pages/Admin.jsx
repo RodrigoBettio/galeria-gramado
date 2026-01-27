@@ -59,7 +59,7 @@ export default function Admin() {
                 <h1 className="font-playfair text-white text-lg font-semibold">
                   Painel Administrativo
                 </h1>
-                <p className="text-[#C5A059] text-xs">Galeria Gramado</p>
+                <p className="text-[#C5A059] text-xs">Gramado Galeria</p>
               </div>
             </div>
 
