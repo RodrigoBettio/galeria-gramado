@@ -50,17 +50,14 @@ export default function ProductCard({ product, index, onViewDetails }) {
 
       {/* Product Info */}
       <div className="mt-4 text-center">
-        <p className="font-montserrat text-[#C5A059]/70 text-xs uppercase tracking-wider mb-1">
-          Gravura em Bico de Pena
-        </p>
         <h3 className="font-playfair text-[#2D2D2D] text-lg font-semibold mb-1 line-clamp-1">
           {product.name}
         </h3>
-        <p className="font-montserrat text-[#4B3619]/60 text-xs uppercase tracking-wide">
+        <p className="font-montserrat text-[#4B3619]/60 text-xs uppercase tracking-wide mb-2">
           {product.category}
         </p>
         {product.price && (
-          <p className="font-montserrat text-[#4B3619] text-base font-bold mt-2">
+          <p className="font-montserrat text-[#4B3619] text-lg font-bold">
             R$ {product.price.toFixed(2)}
           </p>
         )}
